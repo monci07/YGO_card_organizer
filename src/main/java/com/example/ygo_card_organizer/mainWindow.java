@@ -14,20 +14,20 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
-import static javafx.collections.FXCollections.observableArrayList;
-
 public class mainWindow extends Application {
     private TableView table = new TableView();
+    private MySQL_Connector handler = new MySQL_Connector();
+
     @Override
     public void start(Stage stage) throws IOException {
+
         stage.setTitle("YGO Card Organizer!");
         stage.setResizable(false);
         GridPane grid = new GridPane();
-        Scene scene = new Scene(grid,935,400);
+        Scene scene = new Scene(grid,985,400);
         Font titles = Font.font("Default", FontWeight.BOLD, FontPosture.REGULAR, 20);
         Font normalT = Font.font("Default", FontPosture.REGULAR, 12);
         Font buttons = Font.font("Default",  FontWeight.BOLD, FontPosture.REGULAR, 13);
-
         Label Search = new Label("Search/add card");
         Search.setFont(titles);
 
@@ -62,13 +62,17 @@ public class mainWindow extends Application {
 
         table.setEditable(false);
         System.out.println(table.isEditable());
+        TableColumn<Card, Integer> Id = new TableColumn<>("Id");
         TableColumn<Card, String> Binder = new TableColumn<>("Carpeta");
         TableColumn<Card, String> Type = new TableColumn<>("Tipo de carta");
         TableColumn<Card, String> Name = new TableColumn<>("Nombre");
         TableColumn<Card, Integer> count = new TableColumn<>("Cuenta");
 
-        table.getColumns().addAll(Binder, Type, Name, count);
+        table.getColumns().addAll(Id, Binder, Type, Name, count);
 
+        Id.setPrefWidth(50);
+        Id.setCellValueFactory(
+                new PropertyValueFactory<>("id"));
         Binder.setPrefWidth(100);
         Binder.setCellValueFactory(
                 new PropertyValueFactory<>("bin"));
@@ -86,7 +90,11 @@ public class mainWindow extends Application {
             ((TableColumn)(table.getColumns().get(i))).setResizable(false);
         };
 
-        table.getItems().add(new Card("Roja 1", "XYZ","Traptix allomerus",1));
+        List<Card> cards = this.handler.getCards();
+        for(int i = 0; i< cards.size(); i++){
+            table.getItems().add(cards.get(i));
+        }
+
 
         grid.setHgap(10);
         grid.setVgap(10);
@@ -106,7 +114,10 @@ public class mainWindow extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
+    @Override
+    public void stop(){
+        this.handler.closeConnection();
+    }
     public static void main(String[] args) {
         launch();
     }
