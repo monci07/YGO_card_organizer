@@ -2,9 +2,14 @@ package com.example.ygo_card_organizer;
 
 import javafx.application.Application;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -13,9 +18,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class mainWindow extends Application {
-    private TableView table = new TableView();
+    private TableView<Card> table = new TableView();
     private MySQL_Connector handler = new MySQL_Connector();
 
     @Override
@@ -28,40 +34,9 @@ public class mainWindow extends Application {
         Font titles = Font.font("Default", FontWeight.BOLD, FontPosture.REGULAR, 20);
         Font normalT = Font.font("Default", FontPosture.REGULAR, 12);
         Font buttons = Font.font("Default",  FontWeight.BOLD, FontPosture.REGULAR, 13);
-        Label Search = new Label("Search/add card");
-        Search.setFont(titles);
 
-        Label cNameSL = new Label("Card name:");
-        cNameSL.setFont(normalT);
-        TextField cNameST = new TextField();
-        cNameST.setFont(normalT);
-        Button cNameB = new Button("Add card");
-        cNameB.setFont(buttons);
-        cNameB.setMaxWidth(100);
-
-        Label addCard = new Label("Add new Card");
-        addCard.setFont(titles);
-
-        Label cNameAL = new Label("Card name:");
-        cNameAL.setFont(normalT);
-        TextField cNameAT = new TextField();
-        cNameAT.setFont(normalT);
-        Label cTypeL = new Label("Type:");
-        cTypeL.setFont(normalT);
-        ComboBox cTypes = new ComboBox<>();
-        //the next line will be replaced on the future.
-        cTypes.getItems().addAll("Monster", "Pendulum", "Fusion", "Ritual", "XYZ", "Link", "Synchro");
-        Label binderL = new Label("Binder:");
-        cTypeL.setFont(normalT);
-        ComboBox binder = new ComboBox<>();
-        //the next line will be replaced on the future.
-        binder.getItems().addAll("Roja 1", "Negra 1");
-        Button nCNameB = new Button("Add new card");
-        nCNameB.setFont(buttons);
-        nCNameB.setMaxWidth(125);
 
         table.setEditable(false);
-        System.out.println(table.isEditable());
         TableColumn<Card, Integer> Id = new TableColumn<>("Id");
         TableColumn<Card, String> Binder = new TableColumn<>("Carpeta");
         TableColumn<Card, String> Type = new TableColumn<>("Tipo de carta");
@@ -90,14 +65,57 @@ public class mainWindow extends Application {
             ((TableColumn)(table.getColumns().get(i))).setResizable(false);
         };
 
-        List<Card> cards = this.handler.getCards();
-        for(int i = 0; i< cards.size(); i++){
-            table.getItems().add(cards.get(i));
-        }
-
+        ObservableList<Card> cards = this.handler.getCards();
+        FilteredList<Card> items = new FilteredList<>(cards);
+        table.setItems(items);
 
         grid.setHgap(10);
         grid.setVgap(10);
+
+        Label Search = new Label("Search/add card");
+        Search.setFont(titles);
+
+        Label cNameSL = new Label("Card name:");
+        cNameSL.setFont(normalT);
+
+        TextField cNameST = new TextField();
+        cNameST.setFont(normalT);
+        cNameST.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent key)->{
+            Predicate<Card> name = i -> i.getName().contains(cNameST.getCharacters());
+            items.setPredicate(name);
+        });
+
+        table.addEventHandler(MouseEvent.MOUSE_RELEASED, e->{
+            Card cName = table.getSelectionModel().getSelectedItem();
+            cNameST.setText(cName.getName());
+        });
+
+        Button cNameB = new Button("Add card");
+        cNameB.setFont(buttons);
+        cNameB.setMaxWidth(100);
+
+
+        Label addCard = new Label("Add new Card");
+        addCard.setFont(titles);
+
+        Label cNameAL = new Label("Card name:");
+        cNameAL.setFont(normalT);
+        TextField cNameAT = new TextField();
+        cNameAT.setFont(normalT);
+
+        Label cTypeL = new Label("Type:");
+        cTypeL.setFont(normalT);
+        ComboBox cTypes = new ComboBox<>();
+        cTypes.getItems().addAll(this.handler.getCardType());
+
+        Label binderL = new Label("Binder:");
+        cTypeL.setFont(normalT);
+        ComboBox binder = new ComboBox<>();
+        binder.getItems().addAll(this.handler.getBinders());
+
+        Button nCNameB = new Button("Add new card");
+        nCNameB.setFont(buttons);
+        nCNameB.setMaxWidth(125);
 
         grid.add(Search,0,0);
         grid.add(cNameSL,0,1);grid.add(cNameST,1,1);

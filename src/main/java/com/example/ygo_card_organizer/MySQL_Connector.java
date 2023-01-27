@@ -1,5 +1,8 @@
 package com.example.ygo_card_organizer;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -22,9 +25,9 @@ public class MySQL_Connector {
             System.out.println(e);
         }
     }
-    public List<Card> getCards(){
+    public ObservableList<Card> getCards(){
         String query = "Select c.idCard, CONCAT(b.idBinder, ' ', b.color), ct.type, c.name, c.count from card as c inner join binder as b on b.idBinder = c.idBinder inner join ctypes as ct on ct.idTypes = c.idType;";
-        List<Card> result = new ArrayList<Card>();
+        ObservableList<Card> result = FXCollections.observableArrayList();
         try{
             ResultSet resultSet = this.statement.executeQuery(query);
             while(resultSet.next()){
@@ -34,6 +37,29 @@ public class MySQL_Connector {
             System.out.println(e);
         }
         return result;
+    }
+
+    public List<String> getBinders(){
+        String query = "Select CONCAT(idBinder,' ', color) from binder;";
+        return getStrings(query);
+    }
+
+    public List<String> getCardType(){
+        String query = "Select type from ctypes;";
+        return getStrings(query);
+    }
+
+    private List<String> getStrings(String query) {
+        List<String> ctype = new ArrayList<>();
+        try {
+            ResultSet resultSet = this.statement.executeQuery(query);
+            while(resultSet.next()){
+                ctype.add(resultSet.getString(1));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return ctype;
     }
 
     public void closeConnection(){
