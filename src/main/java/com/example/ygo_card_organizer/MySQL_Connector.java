@@ -26,7 +26,7 @@ public class MySQL_Connector {
         }
     }
     public ObservableList<Card> getCards(){
-        String query = "Select c.idCard, CONCAT(b.idBinder, ' ', b.color), ct.type, c.name, c.count from card as c inner join binder as b on b.idBinder = c.idBinder inner join ctypes as ct on ct.idTypes = c.idType;";
+        String query = "Select c.idCard, CONCAT(b.idBinder, ' ', b.color), ct.type, c.name, c.count from card as c inner join binder as b on  c.idBinder = b.idBinder inner join ctypes as ct on c.idType = ct.idTypes ORDER BY c.idCard;";
         ObservableList<Card> result = FXCollections.observableArrayList();
         try{
             ResultSet resultSet = this.statement.executeQuery(query);
@@ -60,6 +60,30 @@ public class MySQL_Connector {
             System.out.println(e);
         }
         return ctype;
+    }
+
+    public void updateCount(int cardID, int count){
+        String query = "Update card set count = " + count + " WHERE idCard = " + cardID + ";";
+        try{
+            this.statement.executeUpdate(query);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public int insertCard(Card card){
+        String query="SELECT insert_card('"+card.getName()+"', "+Character.getNumericValue(card.getBin().toString().charAt(0))+", '"+card.getType()+"', "+card.getCount()+")";
+        ResultSet resultSet;
+        int id=0;
+        try{
+            resultSet = this.statement.executeQuery(query);
+            while(resultSet.next()){
+                id = resultSet.getInt(1);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return id;
     }
 
     public void closeConnection(){

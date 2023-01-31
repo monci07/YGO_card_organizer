@@ -311,7 +311,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Reinforce truth",1,9,1),
 ("Skull invitation",1,9,1),
 ("Witchcrafter patronus",1,9,1),
-("Dust tornado",1,9,2),
+("Dust tornado",1,9,3),
 ("Swallow flip",1,9,1);
 
 INSERT INTO card(name,idBinder,idType,count) VALUES

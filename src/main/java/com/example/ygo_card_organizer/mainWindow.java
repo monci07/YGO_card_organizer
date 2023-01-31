@@ -4,11 +4,12 @@ import javafx.application.Application;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
@@ -93,6 +94,22 @@ public class mainWindow extends Application {
         Button cNameB = new Button("Add card");
         cNameB.setFont(buttons);
         cNameB.setMaxWidth(100);
+        cNameB.setOnAction(event ->{
+            try{
+                Card test = table.getSelectionModel().getSelectedItem();
+                if(test.getCount()!=3){
+                    this.handler.updateCount(test.getId(), test.getCount()+1);
+                    test.setCount(test.getCount()+1);
+                    this.table.setRowFactory(card -> new TableRow<Card>(){
+                        public void updateItem(Card item){
+                            item = test;
+                        }
+                    });
+                }
+            }catch (Exception e){
+                System.out.println(e);
+            }
+        });
 
 
         Label addCard = new Label("Add new Card");
@@ -116,6 +133,14 @@ public class mainWindow extends Application {
         Button nCNameB = new Button("Add new card");
         nCNameB.setFont(buttons);
         nCNameB.setMaxWidth(125);
+        nCNameB.setOnAction(actionEvent -> {
+            if(cTypes.getValue() != null || binder.getValue() != null) {
+                Card newCard = new Card(binder.getValue().toString(), cTypes.getValue().toString(), cNameAT.getCharacters().toString(), 1);
+                int id = this.handler.insertCard(newCard);
+                newCard.setId(id);
+                cards.add(newCard);
+            }
+        });
 
         grid.add(Search,0,0);
         grid.add(cNameSL,0,1);grid.add(cNameST,1,1);

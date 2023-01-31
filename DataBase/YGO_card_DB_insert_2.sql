@@ -339,7 +339,6 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Soul energy MAX!!!",2,9,1),
 ("Void cauldron",2,9,1),
 ("Icy breeze refrain",2,9,1),
-("Dust tornado",2,9,1),
 ("Offering to the immortals",2,9,1),
 ("Destiny board",2,9,1),
 ("Crystal boon",2,9,1),

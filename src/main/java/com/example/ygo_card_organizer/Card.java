@@ -14,7 +14,12 @@ public class Card {
         this.name = name;
         this.count = count;
     }
-
+    public Card(String bin, String type, String name, int count) {
+        this.bin = bin;
+        this.type = type;
+        this.name = name;
+        this.count = count;
+    }
     public int getId() {
         return id;
     }
