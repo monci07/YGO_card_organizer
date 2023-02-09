@@ -1,4 +1,4 @@
---Link
+#Link
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Linguiriboh",2,1,1),
 ("Black luster soldier - soldier of chaos",2,1,1),
@@ -18,7 +18,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Underworld goddess of the closed world",2,1,1),
 ("Abyss keeper",2,1,1);
 
---XYZ
+#XYZ
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Number 97: Draglubion",2,2,1),
 ("Ultimate dragonic utopia ray",2,2,1),
@@ -37,7 +37,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Sacred tree beast, hyperyton",2,2,1),
 ("Gunkan suship ikura-class dreadnought",2,2,1);
 
---Synchro
+#Synchro
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Plunder patrollship brann",2,3,1),
 ("Azure-eyes silver dragon",2,3,1),
@@ -57,7 +57,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Moon dragon quilla",2,3,2),
 ("Accel synchron",2,3,2);
 
---Fusion
+#Fusion
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Dinomorphia stealthbergia",2,4,1),
 ("Starving venom fusion dragon",2,4,2),
@@ -85,11 +85,11 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Evil hero dark gaia",2,4,3),
 ("Evil hero infernal sniper",2,4,1);
 
---Ritual
+#Ritual
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Magikey mechmortar - garesglasser",2,5,1);
 
---Effect monster
+#Effect monster
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Mathmech addition",2,6,1),
 ("Ghostrick siren",2,6,1),
@@ -294,7 +294,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Ghost sister & spooky dogwood",2,6,1),
 ("Mirage dragon",2,6,1);
 
---pendulum
+#pendulum
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("D/D Savant copernicus",2,7,1),
 ("D/D/D Destiny king zero laplace",2,7,1),
@@ -306,7 +306,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Crystal master",2,7,1),
 ("Crystal keeper",2,7,1);
 
---Normal monster
+#Normal monster
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Dark magician",2,8,1),
 ("Melffy rabby",2,8,1),
@@ -321,15 +321,13 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Rabidragon",2,8,1),
 ("Blue-eyes white dragon",2,8,1);
 
---Trap
+#Trap
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Dark renewal",2,9,1),
 ("Zoma the spirit",2,9,2),
 ("Black illusion",2,9,1),
 ("Magistery alchemist",2,9,2),
-("Dinomorphia shell",2,9,1),
 ("Magikey duo",2,9,1),
-("Tribe drive",2,9,1),
 ("Beetrooper fly & sting",2,9,1),
 ("Dinomorphia brute",2,9,1),
 ("Dogmatika genesis",2,9,1),
@@ -382,7 +380,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Magicians' combination",2,9,2),
 ("Magician navigation",2,9,2);
 
---Spell
+#Spell
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Yang zing prana",2,10,1),
 ("Secrets of dark magic",2,10,2),
@@ -503,7 +501,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Sunvine cross breed",2,10,1),
 ("Advanced dark",2,10,1);
 
---Other
+#Other
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Crystal beast token",2,11,1),
 ("Jesse anderson - bounder with the crystal beast",2,11,1),

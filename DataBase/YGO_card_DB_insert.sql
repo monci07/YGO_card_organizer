@@ -15,7 +15,7 @@ INSERT INTO binder(color) VALUES
 ("Red"),
 ("Black");
 
---XYZ
+#XYZ
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Traptix allomerus",1,2,1),
 ("Baby tiragon",1,2,1),
@@ -27,7 +27,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Muzurhythm the string Djinn",1,2,1),
 ("Melomelody the brass Djinn",1,2,1);
 
---Synchro
+#Synchro
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Penguin brave",1,3,2),
 ("Martial metal marcher",1,3,1),
@@ -48,7 +48,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Deep sea prima donna",1,3,1),
 ("Geomathmech final sigma",1,3,1);
 
---Fusion
+#Fusion
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Mirrorjade the iceblade dragon",1,4,1),
 ("Lubellion the searing dragon",1,4,1),
@@ -60,11 +60,11 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Dragonmaid sheou",1,4,1),
 ("Dark magician the dragon knight",1,4,1);
 
---Ritual
+#Ritual
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Chackra",1,5,1);
 
---Effect Monster
+#Effect Monster
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Debris dragon",1,6,1),
 ("Trident warrior",1,6,1),
@@ -214,7 +214,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Barrier Statue of the torrent",1,6,1),
 ("The golden swordsoul",1,6,1);
 
---Pendulum
+#Pendulum
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("D/D Savant nikola",1,7,2),
 ("Dinomist plesios",1,7,1),
@@ -226,7 +226,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Dragong",1,7,1),
 ("Sea dragoons of draconia",1,7,1);
 
---Normal Monster
+#Normal Monster
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Spirit of the harp",1,8,2),
 ("Luster dragon #2",1,8,2),
@@ -247,7 +247,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Magical ghost",1,8,1),
 ("Master & expert",1,8,1);
 
---Trap
+#Trap
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Rainbow gravity",1,9,1),
 ("Skull lair",1,9,1),
@@ -288,7 +288,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Automatic laser",1,9,1),
 ("Screams of the branded",1,9,1),
 ("Shield spear",1,9,1),
-("Dinomorphia shell",1,9,1),
+("Dinomorphia shell",1,9,2),
 ("Judgment of the branded",1,9,2),
 ("Treaty on uniform nomenclature",1,9,1),
 ("Reckless greed",1,9,1),
@@ -297,7 +297,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Backup soldier",1,9,1),
 ("Back to the front",1,9,1),
 ("Straight flush",1,9,1),
-("Tribe drive",1,9,1),
+("Tribe drive",1,9,2),
 ("Waring point",1,9,1),
 ("Revival gift",1,9,1),
 ("Stronghold the moving fortress",1,9,1),
@@ -335,7 +335,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Tuner capture",1,9,2),
 ("Half or nothing",1,9,1);
 
---Spell
+#Spell
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Card destruction",1,10,1),
 ("Last will",1,10,1),
@@ -403,7 +403,7 @@ INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Resurection of chakra",1,10,1),
 ("Spiral fusion",1,10,1);
 
---Other
+#Other
 INSERT INTO card(name,idBinder,idType,count) VALUES
 ("Albaz the shrouded",1,11,1),
 ("Ecclesia the exiled",1,11,1),
