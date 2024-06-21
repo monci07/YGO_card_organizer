@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/ygo_card_org</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="ygo_card_org@DESKTOP-P82HCC1" uuid="1859e874-5b00-4ed5-b818-0a942ff3e0ff">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://DESKTOP-P82HCC1;database=ygo_card_org</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

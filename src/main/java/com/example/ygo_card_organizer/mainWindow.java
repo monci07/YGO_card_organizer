@@ -49,16 +49,16 @@ public class mainWindow extends Application {
         Id.setPrefWidth(50);
         Id.setCellValueFactory(
                 new PropertyValueFactory<>("id"));
-        Binder.setPrefWidth(100);
+        Binder.setPrefWidth(110);
         Binder.setCellValueFactory(
                 new PropertyValueFactory<>("bin"));
-        Type.setPrefWidth(150);
+        Type.setPrefWidth(160);
         Type.setCellValueFactory(
                 new PropertyValueFactory<>("type"));
-        Name.setPrefWidth(300);
+        Name.setPrefWidth(290);
         Name.setCellValueFactory(
                 new PropertyValueFactory<>("name"));
-        count.setPrefWidth(50);
+        count.setPrefWidth(60);
         count.setCellValueFactory(
                 new PropertyValueFactory<>("count"));
         for (int i = 0; i < table.getColumns().size(); i++) {
@@ -73,22 +73,24 @@ public class mainWindow extends Application {
         grid.setHgap(10);
         grid.setVgap(10);
 
-        Label Search = new Label("Search/add card");
+        Label Search = new Label("Search");
         Search.setFont(titles);
 
-        Label cNameSL = new Label("Card name:");
-        cNameSL.setFont(normalT);
-
-        TextField cNameST = new TextField();
-        cNameST.setFont(normalT);
-        cNameST.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent key)->{
-            Predicate<Card> name = i -> i.getName().contains(cNameST.getCharacters());
+        Label cNameL = new Label("Card name:");
+        cNameL.setFont(normalT);
+        TextField cNameT = new TextField();
+        cNameT.setFont(normalT);
+        cNameT.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent key)->{
+            Predicate<Card> name = i -> i.getName().contains(cNameT.getCharacters());
             items.setPredicate(name);
         });
 
+        Label addOldC = new Label("Add card");
+        addOldC.setFont(titles);
+
         table.addEventHandler(MouseEvent.MOUSE_RELEASED, e->{
             Card cName = table.getSelectionModel().getSelectedItem();
-            cNameST.setText(cName.getName());
+            cNameT.setText(cName.getName());
         });
 
         Button cNameB = new Button("Add card");
@@ -115,11 +117,6 @@ public class mainWindow extends Application {
         Label addCard = new Label("Add new Card");
         addCard.setFont(titles);
 
-        Label cNameAL = new Label("Card name:");
-        cNameAL.setFont(normalT);
-        TextField cNameAT = new TextField();
-        cNameAT.setFont(normalT);
-
         Label cTypeL = new Label("Type:");
         cTypeL.setFont(normalT);
         ComboBox cTypes = new ComboBox<>();
@@ -135,7 +132,7 @@ public class mainWindow extends Application {
         nCNameB.setMaxWidth(125);
         nCNameB.setOnAction(actionEvent -> {
             if(cTypes.getValue() != null || binder.getValue() != null) {
-                Card newCard = new Card(binder.getValue().toString(), cTypes.getValue().toString(), cNameAT.getCharacters().toString(), 1);
+                Card newCard = new Card(binder.getValue().toString(), cTypes.getValue().toString(), cNameT.getCharacters().toString(), 1);
                 int id = this.handler.insertCard(newCard);
                 newCard.setId(id);
                 cards.add(newCard);
@@ -143,12 +140,14 @@ public class mainWindow extends Application {
         });
 
         grid.add(Search,0,0);
-        grid.add(cNameSL,0,1);grid.add(cNameST,1,1);
-        grid.add(cNameB,0,2,2,2);
+        grid.add(cNameL,0,1);grid.add(cNameT,1,1);
 
 
-        grid.add(addCard,0,4);
-        grid.add(cNameAL,0,5);grid.add(cNameAT,1,5);
+        grid.add(addOldC,0,2);
+        grid.add(cNameB,0,3,2,2);
+
+
+        grid.add(addCard,0,5);
         grid.add(cTypeL,0,6);grid.add(cTypes,1,6);
         grid.add(binderL,0,7);grid.add(binder,1,7);
         grid.add(nCNameB,0,8,2,2);
